@@ -1,4 +1,4 @@
-const data = [
+const tasks = [
   {
     id: '1',
     title: 'Setup Es Linter + Prettier',

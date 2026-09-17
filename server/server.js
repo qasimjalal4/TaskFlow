@@ -1,14 +1,23 @@
 import express from 'express'
+import { errorHandler } from './middlewares/errorHandler'
+
 
 const app = express()
 
 const PORT = process.env.PORT
 
-app.get('/', (req,res) => {
+app.use(express.json())
 
-  res.send('Taskflow API is running')
+app.get('/tasks', (req,res) => {
 
+  res.status(200).json({
+    success: true,
+    data: 
+  })
 })
+
+
+app.use(errorHandler)
 
 
 app.listen(PORT, () => {
