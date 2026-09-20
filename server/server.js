@@ -18,7 +18,7 @@ app.use('/tasks',validateTask, taskRouter)
 app.use('/tasks/:id', taskRouter)
 
 
-app.patch('/tasks/:id',validateTask, async (req, res) => {
+app.patch('/tasks/:id', async (req, res) => {
 
 
 
