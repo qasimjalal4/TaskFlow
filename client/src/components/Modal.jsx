@@ -2,7 +2,6 @@
 const Modal = () => {
 
   const PRIORITIES = ["High", "Medium", "Low"];
-  const STATUSES = ["Pending", "In Progress", "Completed"];
 
   return (
     <div className="fixed inset-0 bg-black/30 flex justify-center items-center">
