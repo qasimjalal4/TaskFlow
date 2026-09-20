@@ -110,6 +110,41 @@ app.post('/tasks', async (req,res) => {
 })
 
 
+app.delete('/tasks/:id', async (req,res) => {
+
+  const id = Number(req.params.id)
+
+  const tasks = await readTasks()
+
+
+  const taskIndex = tasks.findIndex(task => task.id === id) 
+
+  if (taskIndex === -1) {
+    return res.status(404).json({
+      success: false,
+      message: 'task not found!'
+    })
+
+  }
+
+
+  tasks.splice(taskIndex,1)
+
+ await writeTask(tasks)
+
+ res.status(200).json({
+  success: true,
+  data: tasks 
+ })
+
+})
+
+
+
+
+
+
+
 
 
 
