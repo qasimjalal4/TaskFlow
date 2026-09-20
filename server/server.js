@@ -1,24 +1,14 @@
 import express from 'express'
-import { errorHandler } from './middlewares/errorHandler'
-
+import path from 'path'
+import fs from 'fs/promises'
+import { fileURLToPath } from 'url'
+import validateTask from './middlewares/validateTask.js'
 
 const app = express()
 
-const PORT = process.env.PORT
+const PORT = process.env.PORT || 3000
 
-app.use(express.json())
-
-app.get('/tasks', (req,res) => {
-
-  res.status(200).json({
-    success: true,
-    data: 
-  })
-})
-
-
-app.use(errorHandler)
-
+ 
 
 app.listen(PORT, () => {
   console.log(`Server is running on PORT: ${PORT}`)
