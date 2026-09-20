@@ -78,6 +78,40 @@ app.get('/tasks', async (req,res) => {
 
 
 
+app.post('/tasks', async (req,res) => {
+
+
+  const { title, desc, due, priority} = req.body
+
+
+  const tasks = await readTasks()
+
+
+  const newTask = {
+    id: tasks.length > 0 ? Math.max(...tasks.map((task) => task.id)) + 1 : 1,
+    title: title,
+    desc: desc,
+    due: due,
+    created: new Date().toISOString().split('T')[0],
+    priority: priority,
+    done: false
+  }
+
+  tasks.push(newTask)
+
+  await writeTask(tasks)
+
+
+  res.status(201).json({
+    success: true,
+    data: newTask
+  })
+
+})
+
+
+
+
 
 app.listen(PORT, () => {
   console.log(`Server is running on PORT: ${PORT}`)
