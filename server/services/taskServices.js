@@ -1,9 +1,10 @@
+import NotFoundError from "../errors/NotFoundError.js"
 import { readTasks, writeTask } from "../utils/TaskFile.js"
 
 
 export const getTasks = async (search, priority, status) => {
 
-   const tasks = await readTasks()
+  const tasks = await readTasks()
 
   let filteredTasks = tasks
 
@@ -62,11 +63,7 @@ export const deletedTask =  async (id) => {
   const taskIndex = tasks.findIndex(task => task.id === id) 
 
   if (taskIndex === -1) {
-    return res.status(404).json({
-      success: false,
-      message: 'task not found!'
-    })
-
+    throw new NotFoundError('task not found!')
   }
 
 
