@@ -99,17 +99,11 @@ export const updateTask =  async (id,updates) => {
 
 
   if (title !== undefined) {
-    if (!title.trim()) {
-      throw new BadRequestError('Title cannot be empty!')
-    }
     task.title = title
   }
 
 
   if (desc !== undefined) {
-    if (!desc.trim()) {
-      throw new BadRequestError('Desc cannot be empty!')
-    }
     task.desc = desc
   }
 

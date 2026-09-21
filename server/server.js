@@ -1,7 +1,7 @@
 import express from 'express'
 import taskRouter from './routes/taskRoutes.js' 
-import validateTask from './middlewares/validateTask.js'
 import errorHandler from './middlewares/errorHandler.js'
+
  
 
 
@@ -15,13 +15,6 @@ app.use(express.json())
  
 
 app.use('/tasks', taskRouter)
-
-app.use('/tasks',validateTask, taskRouter)
-
-app.use('/tasks/:id', taskRouter)
-
-app.use('/tasks/:id', taskRouter)
-
 
 
 
