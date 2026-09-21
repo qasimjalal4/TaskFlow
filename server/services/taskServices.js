@@ -56,7 +56,7 @@ export const createTask = async (title, desc, due, priority) => {
 
 
 
-export const deletedTask =  async (id) => {
+export const deleteTask =  async (id) => {
 
   const tasks = await readTasks()
 

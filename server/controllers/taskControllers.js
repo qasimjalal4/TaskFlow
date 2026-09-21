@@ -3,7 +3,7 @@ import { getTasks as getTasksService,
          deleteTask as deleteTaskService,
          updateTask as updateTaskService 
        } from '../services/taskServices.js'
-
+import { asyncHandler } from '../middlewares/asyncHandler.js'
 
 
 
@@ -16,7 +16,7 @@ export const getTasks = async (req,res) => {
   
   res.status(200).json({
     success: true,
-    data: filteredTasks
+    data: tasks
   })
 
 }
@@ -25,7 +25,7 @@ export const getTasks = async (req,res) => {
 
 
 
-export const createTask = async (req,res) => {
+export const createTask = asyncHandler(async (req,res) => {
 
   const { title, desc, due, priority} = req.body
 
@@ -36,13 +36,13 @@ export const createTask = async (req,res) => {
     data: newTask
   })
 
-}
+})
 
 
 
 
 
-export const deleteTask = async (req,res) => {
+export const deleteTask = asyncHandler(async (req,res) => {
 
   const id = Number(req.params.id)
 
@@ -53,11 +53,11 @@ export const deleteTask = async (req,res) => {
   data: deletedTask
  })
 
-}
+})
 
 
 
-export const updateTask = async (req, res) => {
+export const updateTask = asyncHandler(async (req, res) => {
 
   const id = Number(req.params.id)
 
@@ -69,4 +69,4 @@ export const updateTask = async (req, res) => {
     data: updatedTask
   })
  
-} 
+}) 
