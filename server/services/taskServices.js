@@ -1,3 +1,4 @@
+import BadRequestError from "../errors/BadRequestError.js"
 import NotFoundError from "../errors/NotFoundError.js"
 import { readTasks, writeTask } from "../utils/TaskFile.js"
 
@@ -73,4 +74,63 @@ export const deletedTask =  async (id) => {
 
 
  return deletedTask
+}
+
+
+
+
+
+
+export const updateTask =  async (id,updates) => {
+
+  
+  const tasks = await readTasks()
+
+  const task = tasks.find(task => task.id === id)
+
+
+  if(!task) {
+    throw new NotFoundError('Task not found!')
+  }
+
+
+  const { title, desc, due, priority, done } = updates
+  
+
+
+  if (title !== undefined) {
+    if (!title.trim()) {
+      throw new BadRequestError('Title cannot be empty!')
+    }
+    task.title = title
+  }
+
+
+  if (desc !== undefined) {
+    if (!desc.trim()) {
+      throw new BadRequestError('Desc cannot be empty!')
+    }
+    task.desc = desc
+  }
+
+
+
+  if (due !== undefined) {
+    task.due = due
+  }
+
+
+  if (priority !== undefined) {
+    task.priority = priority
+  }
+
+
+  if (done !== undefined) {
+    task.done = done
+  }
+
+  await writeTask(tasks)
+
+  return task
+
 }

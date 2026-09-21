@@ -1,6 +1,7 @@
 import { getTasks as getTasksService,
          createTask as createTaskService,
-         deleteTask as deleteTaskService 
+         deleteTask as deleteTaskService,
+         updateTask as updateTaskService 
        } from '../services/taskServices.js'
 
 
@@ -53,3 +54,19 @@ export const deleteTask = async (req,res) => {
  })
 
 }
+
+
+
+export const updateTask = async (req, res) => {
+
+  const id = Number(req.params.id)
+
+  
+  const updatedTask = await updateTaskService(id,req.body)
+  
+  res.status(200).json({
+    success: true,
+    data: updatedTask
+  })
+ 
+} 

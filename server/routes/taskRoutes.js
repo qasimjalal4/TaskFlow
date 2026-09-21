@@ -1,5 +1,6 @@
 import express from 'express'
-import { getTasks, createTask, deleteTask } from '../controllers/taskControllers'
+import { getTasks, createTask, deleteTask, updateTask } from '../controllers/taskControllers.js'
+ 
 
 
 
@@ -12,7 +13,7 @@ router.post('/', createTask)
 
 router.delete('/:id', deleteTask)
 
-
+router.patch('/:id', updateTask)
 
 
 

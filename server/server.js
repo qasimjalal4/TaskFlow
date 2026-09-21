@@ -1,6 +1,7 @@
 import express from 'express'
-import taskRouter from './routes/taskRoutes' 
-import validateTask from './middlewares/validateTask'
+import taskRouter from './routes/taskRoutes.js' 
+import validateTask from './middlewares/validateTask.js'
+import errorHandler from './middlewares/errorHandler.js'
 
 const app = express()
 
@@ -17,86 +18,12 @@ app.use('/tasks',validateTask, taskRouter)
 
 app.use('/tasks/:id', taskRouter)
 
-
-app.patch('/tasks/:id', async (req, res) => {
-
-
-
-  const id = Number(req.params.id)
-
-
-
-  const tasks = await readTasks()
-
-
-
-  const task = tasks.find(task => task.id === id)
-
-
-
-  if(!task) {
-
-    return res.status(404).json({
-
-      success: false,
-
-      message: 'Task not found!'
-
-    })
-  }
-})
-
-
-
-  const { title, desc, due, priority, done } = req.body
+app.use('/tasks/:id', taskRouter)
 
 
 
 
-
-    if (title !== undefined) {
-
-    task.title = title
-
-  }
-
-
-
-  if (desc !== undefined) {
-
-    task.desc = desc
-
-  }
-
-
-
-  if (due !== undefined) {
-
-    task.due = due
-
-  }
-
-
-
-  if (priority !== undefined) {
-
-    task.priority = priority
-
-  }
-
-
-
-  if (done !== undefined) {
-
-    task.done = done
-
-  }
-
-
-
-
-
-
+app.use(errorHandler)
 
 
 

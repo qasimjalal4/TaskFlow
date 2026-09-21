@@ -7,7 +7,7 @@ function App() {
 
   return (
      <div className="h-screen w-full flex justify-center items-center">
-      <div className="w-3/4 flex">
+      <div className="w-2/3 h-[550px] shadow-md rounded- flex">
         <NavBar />
         <Main />
       </div>
